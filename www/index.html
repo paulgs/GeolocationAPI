@@ -3,29 +3,19 @@
   <head>
     <title>Device Properties Example</title>
 
-    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <script type="text/javascript" charset="utf-8" src="phonegap-1.2.0.js"></script>
     <script type="text/javascript" charset="utf-8">
 
-    var watchID = null;
-    // Wait for Cordova to load
+    // Wait for PhoneGap to load
     //
     document.addEventListener("deviceready", onDeviceReady, false);
 
-    // Cordova is ready
+    // PhoneGap is ready
     //
     function onDeviceReady() {
-        navigator.alert('Cordova is ready');
+        navigator.geolocation.getCurrentPosition(onSuccess, onError);
     }
 
-    function getCurrentPosition() {
-        navigator.geolocation.getCurrentPosition(onSuccess, onError);    
-    }
-        
-    function watchPosition() {
-        // Update every 3 seconds
-        var options = { frequency: 3000 };
-        watchID = navigator.geolocation.watchPosition(onSuccess, onError, options);        
-    }
     // onSuccess Geolocation
     //
     function onSuccess(position) {
@@ -50,8 +40,6 @@
     </script>
   </head>
   <body>
-    <p id="geolocation">Waiting for location...</p>
-    <button id="btnGetCurrentPosition" onclick="getCurrentPosition();">Get Current Position</button> <br>
-    <button id="btnWatchPosition" onclick="watchPosition();">Watch Position</button> <br>      
+    <p id="geolocation">Finding geolocation...</p>
   </body>
 </html>
